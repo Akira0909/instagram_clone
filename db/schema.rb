@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20191201074019) do
     t.text "self_introduction"
     t.string "phone"
     t.boolean "admin", default: false, null: false
-    t.string "image_name", default: "", null: false
+    t.string "image_name", default: "default_image.jpg", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

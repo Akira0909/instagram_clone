@@ -5,11 +5,10 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :user_name, presence: true, length: { maximum: 50 }, uniqueness: true
   validates :self_introduction, length: { maximum: 500 }
-  validates :phone, length: { maximum: 13 }, uniqueness: true
+  validates :phone, length: { maximum: 13 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, length: { maximum: 255 },format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-  
-  
+  validates :password, presence: true, length: { minimum: 6 }
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

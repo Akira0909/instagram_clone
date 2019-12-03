@@ -9,9 +9,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :sex
       t.string :website
       t.text :self_introduction
-      t.string :phone, unique: true
+      t.string :phone
       t.boolean :admin, null: false, default: false
-      t.string :image_name, null: false, default: ""
+      t.string :image_name, null: false, default: "default_image.jpg"
       
       ## Database authenticatable
       t.string :email, null: false, default: ""
