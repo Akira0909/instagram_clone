@@ -1,6 +1,21 @@
-<h1>Instagram Clone</h1>
-<p>
-  This is the home page for the
-  <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-  sample application.
-</p>
+<% if user_signed_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <section class="stats">
+        <%= render 'shared/stats' %>
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>フィード</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+<% else %>
+  <h1>Instagram Clone</h1>
+  <p>
+    This is the home page for the Instagram Clone application.
+  </p>
+<% end %>

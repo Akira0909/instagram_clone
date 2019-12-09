@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
+  include Warden::Test::Helpers
 
   test "invalid signup information" do
     get new_user_registration_path

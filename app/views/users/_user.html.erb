@@ -1,0 +1,6 @@
+<li>
+  <%= link_to user do %>
+    <img class="user_image" src="<%= "/user_images/#{user.image_name}" %>">
+  <% end %>
+  <%= link_to user.user_name, user %>
+</li>
