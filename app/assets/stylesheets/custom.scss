@@ -88,6 +88,19 @@ p {
   text-decoration: none;
 }
 
+.search-form {
+  width: 20%;
+  float: left;
+  margin-top: 14px;
+  margin-left: 50px;
+}
+
+.search-form-submit {
+  width: 50px;
+  float: left;
+  margin-top: 13px;
+}
+
 /* footer */
 
 footer {
@@ -161,17 +174,6 @@ aside {
   }
   strong {
     display: block;
-  }
-}
-
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
   }
 }
 
@@ -250,6 +252,21 @@ input {
     color: $gray-light;
     display: block;
     margin-left: 60px;
+  }
+}
+
+/* notifications */
+
+.notifications {
+  list-style: none;
+  padding: 0;
+  li {
+    padding-top: 20px;
+    border-top: 1px solid #e8e8e8;
+  }
+  .timestamp {
+    color: $gray-light;
+    float: right;
   }
 }
 

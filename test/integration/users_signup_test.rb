@@ -15,7 +15,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                                 }
                                               }
     end
-    # assert_template 'users/sign_up'
+    assert_template 'registrations/new'
     assert_select   'div#error_explanation'
     assert_select   'div.field_with_errors'
   end
@@ -33,7 +33,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                               }
     end
     follow_redirect!
-    assert_template '/'
+    assert_template 'static_pages/home'
     assert_not flash.blank?
   end
   

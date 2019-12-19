@@ -1,0 +1,15 @@
+<% provide(:title, "検索結果") %>
+<div class="row">
+	<div class="col-md-8">
+  <h3>検索結果(<%= @search_microposts.count %>)</h3>
+		<%= render 'search_micropost' %>
+	</div>
+	<aside class="col-md-4">
+		<section class="user_info">
+			<%= render 'shared/user_info' %>
+		</section>
+		<section class="stats">
+			<%= render 'shared/stats' %>
+		</section>
+	</aside>
+</div>

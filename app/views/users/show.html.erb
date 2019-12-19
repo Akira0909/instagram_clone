@@ -6,7 +6,11 @@
       	<img class="user_image" src="<%= "/user_images/#{@user.image_name}" %>">
         <%= @user.user_name %>
       </h1>
-      <%= link_to("編集", edit_user_registration_path ) %>
+      <p><%= link_to("お気に入りの投稿", likes_user_path ) %></p>
+      <% if current_user == @user %>
+        <p><%= link_to("プロフィール編集", edit_user_registration_path ) %></p>
+        <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+      <% end %>
     </section>
     <section class="stats">
       <%= render 'shared/stats' %>

@@ -3,4 +3,4 @@
 <% end %>
 <h1><%= current_user.user_name %></h1>
 <span><%= link_to "プロフィール", current_user %></span>
-<span><%= pluralize(current_user.microposts.count, "の投稿") %></span>
+<span><b>投稿数:</b> <%= current_user.microposts.count %></span>

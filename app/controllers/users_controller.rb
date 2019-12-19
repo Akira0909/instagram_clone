@@ -25,6 +25,13 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
   
+  def likes
+    @title = "お気に入りの投稿"
+    @user = User.find(params[:id])
+    @likeposts = @user.likeposts.page(params[:page])
+    render 'show_like'
+  end
+  
   private
   
     def correct_user
