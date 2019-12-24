@@ -1,0 +1,11 @@
+<% provide(:title, 'ユーザー画像の更新') %>
+<%= form_tag("/users/#{@user.id}/picture_update", {multipart: true}) do %>
+  <div class="form users-form">
+    <img class="user_image" src="<%= "/user_images/#{@user.image_name}" %>">
+    <div class="picture">
+      <p>画像</p>
+      <input name="image" type="file">
+      <input class="btn btn-primary" type="submit" value="プロフィール画像を変更">
+    </div>
+  </div>
+<% end %>

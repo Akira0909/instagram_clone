@@ -101,6 +101,19 @@ p {
   margin-top: 13px;
 }
 
+.notification-circle {
+  color: orange;
+}
+
+.notification {
+  position: relative;
+  i {
+    position: absolute;
+    top: 10px;
+    left: 40px; 
+  }
+}
+
 /* footer */
 
 footer {
@@ -181,10 +194,14 @@ aside {
   padding: 0;
 }
 
-
 /* users/show */
 .user_image {
   width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  box-shadow: 0 2px 6px #c1ced7;
+  margin: 20px 0 10px;
+  object-fit: cover;
 }
 
 /* forms */
@@ -248,10 +265,20 @@ input {
       padding: 5px 0;
     }
   }
+  .like {
+    display: block;
+    margin-left: 60px;
+  }
   .timestamp {
+    font-size: 8px;
     color: $gray-light;
     display: block;
     margin-left: 60px;
+  }
+  .delete_link {
+    color: $gray-light;
+    display: block;
+    margin: 10px 0 0 60px;
   }
 }
 
@@ -261,12 +288,13 @@ input {
   list-style: none;
   padding: 0;
   li {
-    padding-top: 20px;
+    padding: 10px 10px;
     border-top: 1px solid #e8e8e8;
   }
   .timestamp {
+    font-size: 8px;
     color: $gray-light;
-    float: right;
+    margin-left: 20px;
   }
 }
 
@@ -284,7 +312,7 @@ span.picture {
   }
 }
 
-/* use/show */
+/*users/show */
 
 .pictures {
   width: 33%;
@@ -298,4 +326,74 @@ span.picture {
 
 .microposts-box {
   width: 100%;
+}
+
+.user_info_box {
+  margin-top: 40px;
+}
+
+// profile写真のモーダルの設定
+
+h4{
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.link-font, a.link-font{
+  color: #3897F0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.denger-link, a.denger-link:hover{
+  font-weight: 600;
+  color: #ed4956;
+  cursor: pointer;
+}
+
+.modal .modal-dialog.modal-dialog-centered{
+  -webkit-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal-content{
+  width: 80%;
+  margin: 0 auto;
+  border: 0px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.modal-header{
+  padding: 25px;
+  border-bottom: 1px solid #efefef;
+}
+
+.modal-body{
+  padding: 11px;
+  border-bottom: 1px solid #efefef;
+}
+
+.modal-body-b{
+  cursor: pointer;
+  padding: 11px;
+}
+
+.modal-picture{
+  width: 100%;
+}
+
+// お気に入りボタン
+
+.like-btn {
+  color: #8899a6;
+}
+
+.like-btn-unlike {
+  color: #ff2581;
+}
+
+.btn-like-unlike{
+  background-color: white;
+  border: none;
 }

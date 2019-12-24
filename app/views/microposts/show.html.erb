@@ -1,0 +1,62 @@
+<% provide(:title, "#{@user.user_name}の投稿") %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="microposts">
+      <%= link_to @micropost.user do %>
+        <img class="user_image" src="<%= "/user_images/#{@user.image_name}" %>">
+      <% end %>
+      <span class="user"><%= link_to @micropost.user.user_name, @micropost.user %></span> 
+      <span class="content">
+        <% if @micropost.picture? %>
+          <img src="<%= @micropost.picture.url %>">
+        <% end %>
+      </span>
+      <span class="like" id="like_form">
+        <% if current_user.likepost?(@micropost) %>
+          <%= form_for(current_user.likes.find_by(micropost_id: @micropost.id), html: { method: :delete }) do |f| %>
+            <%= hidden_field_tag :micropost_id, @micropost.id %>
+            <%= button_tag :type => "submit", class: "btn-like-unlike" do %>
+      			  <span class="fa fa-heart like-btn-unlike"></span>
+      			  <%= Like.where(micropost_id: @micropost.id).count %>
+      			<% end %>
+          <% end %>
+        <% else %>
+          <%= form_for(current_user.likes.build) do |f| %>
+            <div><%= hidden_field_tag :micropost_id, @micropost.id %></div>
+            <%= button_tag :type => "submit", class: "btn-like-unlike" do %>
+      			  <span class="fa fa-heart like-btn"></span>
+      			  <%= Like.where(micropost_id: @micropost.id).count %>
+      			<% end %>
+          <% end %>
+        <% end %>
+      </span>
+      <div class="content">
+        <%= link_to @micropost.user.user_name, user_path(@micropost.user) %>
+        <%= @micropost.content %>
+      </div>
+      <% @comments.each do |comment| %>
+        <div class="content">
+          <%= link_to comment.user.user_name, user_path(comment.user) %>
+          <%= comment.content %>
+        </div>
+      <% end %>
+      <span class="timestamp">
+        <%= time_ago_in_words(@micropost.created_at) %>前に投稿
+      </span>
+      <span class="delete_link">
+        <% if current_user == @micropost.user %>
+          <%= link_to "削除", @micropost, method: :delete,
+            data: { confirm: "削除してよろしいですか?" } %>
+        <% end %>
+      </span>
+      <hr>
+      <%= form_for [@micropost, @comment] do |f| %>
+        <%= f.label :content, "コメントを投稿" %><br />
+        <%= f.text_area :content, placeholder: "コメントを入力してください...",
+          class: 'form-control' %>
+        <br>
+        <%= f.submit 'コメントする', class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

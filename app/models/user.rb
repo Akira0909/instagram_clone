@@ -17,9 +17,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :likeposts, through: :likes, source: :micropost
   has_many :comments
-  
   before_save { self.email = email.downcase }
-  
   validates :name, presence: true, length: { maximum: 50 }
   validates :user_name, presence: true, length: { maximum: 50 }, uniqueness: true
   validates :self_introduction, length: { maximum: 500 }
@@ -95,15 +93,21 @@ class User < ApplicationRecord
   private
 
     def self.dummy_name(auth)
-      "#{auth.uid}-#{auth.provider}"
+      "#{auth.uid}-#{auth.provider}-name"
     end
     
     def self.dummy_user_name(auth)
-      "#{auth.uid}-#{auth.provider}"
+      "#{auth.uid}-#{auth.provider}-username"
     end
 
     def self.dummy_email(auth)
       "#{auth.uid}-#{auth.provider}@example.com"
+    end
+    
+    def picture_size
+      if picture.size > 5.megabytes
+        errors.add(:image_name, "最大データサイズは5MBです。")
+      end
     end
          
 end

@@ -1,0 +1,46 @@
+<% @microposts.each do |micropost| %>
+	<div class="modal fade" id="Modal-<%= micropost.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	        <img class="modal-picture" src="<%= micropost.picture.url %>">
+	      	<div id="like_form">
+					  <% if current_user.likepost?(micropost) %>
+					    <%= form_for(current_user.likes.find_by(micropost_id: micropost.id), html: { method: :delete }) do |f| %>
+					      <%= hidden_field_tag :micropost_id, micropost.id %>
+					      <%= button_tag :type => "submit", class: "btn-like-unlike" do %>
+								  <span class="fa fa-heart like-btn-unlike"></span>
+								  <%= Like.where(micropost_id: micropost.id).count %>
+								<% end %>
+					    <% end %>
+					  <% else %>
+					    <%= form_for(current_user.likes.build) do |f| %>
+					      <%= hidden_field_tag :micropost_id, micropost.id %>
+					      <%= button_tag :type => "submit", class: "btn-like-unlike" do %>
+								  <span class="fa fa-heart like-btn"></span>
+								  <%= Like.where(micropost_id: micropost.id).count %>
+								<% end %>
+					    <% end %>
+					  <% end %>
+					</div>
+	      </div>
+	      <% if micropost.comments.any? %>
+	        <div class="modal-body">
+	          <% micropost.comments.each do |comment| %>
+	            <p>
+	              <%= link_to comment.user.user_name, user_path(comment.user.id) %>  
+	              <%= comment.content %>
+	            </p>
+	          <% end %>
+	        </div>
+	      <% end %>
+	      <div class="modal-body">
+	      	<span><%= link_to "詳細", micropost_path(micropost.id) %></span>　
+	      </div>
+	      <div class="modal-body-b">　　
+	        <span data-dismiss="modal">閉じる　　　</span>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<% end %>

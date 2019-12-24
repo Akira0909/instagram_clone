@@ -1,24 +1,11 @@
 <% visitor = notification.visitor %>
 <% visited = notification.visited %>
 <li>
-  <%= link_to visitor.user_name, user_path(visitor) %>さんが
-
-  <% case notification.action %>
-  <% when 'follow' then %>
-    あなたをフォローしました
-  <% when 'like' then %>
-    <%= link_to 'あなたの投稿', notification.micropost, style: "font-weight: bold;" %>
-    にいいねしました
-  <% when 'comment' then %>
-    <% if notification.micropost.user_id == visited.id %>
-    	<%= link_to "あなたの投稿", notification.micropost, style: "font-weight: bold;" %>
-    <% else %>
-    	<%= link_to "#{notification.micropost.user.user_name}さんの投稿", micropost_path(notification.micropost) %>
-    	にコメントしました
-    	<p><%= Comment.find_by(id: notification.comment_id)&.comment %></p>
-    <% end %>
-  <% end %>
+  <%== notification_form(notification) %>
   <span class="timestamp">
-    <%= time_ago_in_words(notification.created_at).upcase %>前
+    <%= "(#{time_ago_in_words(notification.created_at).upcase}前)" %>
   </span>
+  <% if !@comment.nil? %>
+    <p><%= @comment %></p>
+  <% end %>
 </li>

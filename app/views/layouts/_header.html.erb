@@ -11,8 +11,12 @@
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "ホーム", root_path %></li>
         <% if user_signed_in? %>
-          <li><%= link_to "通知", notifications_path %></li>
-          <li><%= link_to "ユーザー", users_path %></li>
+          <li class = "notification">
+            <%= link_to "通知", notifications_path %>
+            <% if unchecked_notifications.any? %>
+              <i class="fa fa-circle notification-circle"></i>
+            <% end %>
+          </li>
           <li><%= link_to current_user.user_name, current_user %></li>
         <% else %>
           <li><%= link_to "ログイン", new_user_session_path %></li>

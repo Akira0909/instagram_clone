@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       get :following, :followers, :likes
     end
   end
+  get '/picture_edit', to:'users#picture_edit'
+  post 'users/:id/picture_update', to:'users#picture_update'
+  post '/picture_delete', to:'users#picture_delete'
   resources :microposts do
     resources :comments, only: [:create, :destroy]
   end
