@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+お世話になっております。
+12月半ばから仕事が繁忙期に突入してしまったためになかなか作業時間が取れず、ご提出が遅れまして誠に申し訳ございません。
+まだ全ての機能を実装できておりませんが、ご講評をいただけますと幸いです。
 
-Things you may want to cover:
+＜自分が苦労した点＞
+とにかくgemのdeviseに悩まされました。
+非常に便利なgemですがその分不可視な部分が多く、あらゆる場面で「deviseを使用している場合はどう書けばいいのか？」という部分での躓きがありました。
+今後も使用することが多く出てくるgemだと思うので、GitHubやwikiの記事を自力で読み解き解決する力を早く身に付けたいです。
 
-* Ruby version
+＜学んだ点＞
+Rails Tutorialで学んで分かった気でいた部分も、実際に自分で考えてコードを書くことで理解をより深めることができました。
+特にBootstrapやパーシャルの使い方、モーダルの導入方法などは大変勉強になりました。
+アソシエーションの組み方もに関してもより理解が深まったように思います。
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+＜自慢したい・相談したい点＞
+deviseでのminitestの記述に関して、sign_inメソッドでユーザーのログイン状態を作ることには成功したのですが、ご紹介頂いたbinding.pryでのデバッグを完全に理解することができず、テスト内からpostで情報を送信してログイン状態を作ることが最後までできませんでした。
+同じくdevise関係で、views/devise/registrations/edit.html.erbのform_forの引数の中身が理解できず、ユーザー編集ページとパスワード変更ページを分ける事ができませんでした。
