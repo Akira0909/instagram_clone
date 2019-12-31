@@ -1,7 +1,19 @@
 <% provide(:title, 'ユーザー') %>
-<h1>ユーザー</h1>
-<%= will_paginate %>
-<ul class="users">
-  <%= render @users %>
-</ul>
-<%= will_paginate %>
+<div class="row">
+	<div class="col-md-8">
+		<h1>ユーザー</h1>
+		<%= will_paginate %>
+		<ul class="users">
+		  <%= render @users %>
+		</ul>
+		<%= will_paginate %>
+	</div>
+	<aside class="col-md-4">
+		<section class="user_info">
+			<%= render 'shared/user_info' %>
+		</section>
+		<section class="stats">
+			<%= render 'shared/stats' %>
+		</section>
+	</aside>
+</div>

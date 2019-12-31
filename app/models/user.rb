@@ -14,7 +14,7 @@ class User < ApplicationRecord
                                    dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-  has_many :likes, dependent: :destroy
+  has_many :likes
   has_many :likeposts, through: :likes, source: :micropost
   has_many :comments
   before_save { self.email = email.downcase }
@@ -31,19 +31,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
   
-  def self.find_for_oauth(auth)
-    user = User.where(uid: auth.uid, provider: auth.provider).first
-    unless user
-      user = User.create(
-        name:      auth.dummy_name(auth),
-        user_name: auth.dummy_user_name(auth),
-        uid:       auth.uid,
-        provider:  auth.provider,
-        email:     auth.dummy_email(auth),
-        password: Devise.friendly_token[0, 20]
-      ) 
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.name
+      user.user_name = auth.name
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
     end
-    user
   end
   
   def feed
@@ -91,23 +87,11 @@ class User < ApplicationRecord
   end
   
   private
-
-    def self.dummy_name(auth)
-      "#{auth.uid}-#{auth.provider}-name"
-    end
-    
-    def self.dummy_user_name(auth)
-      "#{auth.uid}-#{auth.provider}-username"
-    end
-
-    def self.dummy_email(auth)
-      "#{auth.uid}-#{auth.provider}@example.com"
-    end
     
     def picture_size
       if picture.size > 5.megabytes
         errors.add(:image_name, "最大データサイズは5MBです。")
       end
     end
-         
+
 end

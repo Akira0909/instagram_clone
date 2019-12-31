@@ -332,31 +332,31 @@ span.picture {
   margin-top: 40px;
 }
 
-// profile写真のモーダルの設定
+// モーダルの設定
 
-h4{
+h4 {
   font-size: 18px;
   font-weight: 600;
 }
 
-.link-font, a.link-font{
+.link-font, a.link-font {
   color: #3897F0;
   font-weight: 600;
   cursor: pointer;
 }
 
-.denger-link, a.denger-link:hover{
+.denger-link, a.denger-link:hover {
   font-weight: 600;
   color: #ed4956;
   cursor: pointer;
 }
 
-.modal .modal-dialog.modal-dialog-centered{
+.modal .modal-dialog.modal-dialog-centered {
   -webkit-transform: translate(0, 0);
   transform: translate(0, 0);
 }
 
-.modal-content{
+.modal-content {
   width: 80%;
   margin: 0 auto;
   border: 0px;
@@ -364,22 +364,22 @@ h4{
   text-align: center;
 }
 
-.modal-header{
+.modal-header {
   padding: 25px;
   border-bottom: 1px solid #efefef;
 }
 
-.modal-body{
+.modal-body {
   padding: 11px;
   border-bottom: 1px solid #efefef;
 }
 
-.modal-body-b{
+.modal-body-b {
   cursor: pointer;
   padding: 11px;
 }
 
-.modal-picture{
+.modal-picture {
   width: 100%;
 }
 
@@ -393,7 +393,7 @@ h4{
   color: #ff2581;
 }
 
-.btn-like-unlike{
+.btn-like-unlike {
   background-color: white;
   border: none;
 }

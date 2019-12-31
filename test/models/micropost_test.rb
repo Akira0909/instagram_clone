@@ -16,7 +16,7 @@ class MicropostTest < ActiveSupport::TestCase
     assert_not @micropost.valid?
   end
   
-   test "content should be present" do
+  test "content should be present" do
     @micropost.content = "   "
     assert_not @micropost.valid?
   end
@@ -30,4 +30,21 @@ class MicropostTest < ActiveSupport::TestCase
     assert_equal microposts(:most_recent), Micropost.first
   end
   
+  test "associated likes should be destroyed" do
+    @user.save
+    @micropost = @user.microposts.create!(content: "テストの投稿")
+    @like = @micropost.likes.create!(user_id: @user.id)
+    assert_difference 'Like.count', -1 do
+      @micropost.destroy
+    end
+  end
+  
+  test "associated comments should be destroyed" do
+    @user.save
+    @micropost = @user.microposts.create!(content: "テストの投稿")
+    @micropost.comments.create!(content: "テストのコメント",user_id: @user.id)
+    assert_difference 'Comment.count', -1 do
+      @micropost.destroy
+    end
+  end
 end

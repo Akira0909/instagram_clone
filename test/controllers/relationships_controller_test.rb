@@ -15,5 +15,4 @@ class RelationshipsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to new_user_session_url
   end
-  
 end

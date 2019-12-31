@@ -1,4 +1,5 @@
 module DeviseHelper
+	
 	def bootstrap_alert(key)
 		case key
 		when "alert"

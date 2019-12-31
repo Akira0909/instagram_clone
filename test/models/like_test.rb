@@ -30,5 +30,4 @@ class LikeTest < ActiveSupport::TestCase
     assert michael.likepost?(micropost)
     assert micropost.liked_users.include?(michael)
   end
-  
 end

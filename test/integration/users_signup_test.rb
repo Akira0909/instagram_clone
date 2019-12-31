@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class UsersSignupTest < ActionDispatch::IntegrationTest
-  include Warden::Test::Helpers
 
   test "invalid signup information" do
     get new_user_registration_path
@@ -35,6 +34,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_template 'static_pages/home'
     assert_not flash.blank?
+    assert_select "a[href=?]", new_user_session_path, count: 0
+    assert_select "a[href=?]", notifications_path
+    # assert is_logged_in?
   end
-  
 end

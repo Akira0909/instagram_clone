@@ -26,7 +26,7 @@ class UserTest < ActiveSupport::TestCase
         						 email: "example2@gmail.com",
         						 password: "87654321",
         						 password_confirmation: "87654321"
-        	           )	
+        	           )
   end
   
   test "should be valid" do
@@ -55,10 +55,9 @@ class UserTest < ActiveSupport::TestCase
   
   test "user_name should be unique" do
     @user.save
-    duplicate_user = @user2
     @user2.user_name = "Example"
     @user2.save
-    assert_not duplicate_user.valid?
+    assert_not @user2.valid?
   end
   
   test "self_introduction should not be too long" do
@@ -126,22 +125,46 @@ class UserTest < ActiveSupport::TestCase
     end
   end
   
+  test "associated comments should be destroyed" do
+    @user.save
+    @micropost = @user.microposts.create!(content: "テストの投稿")
+    @user.comments.create!(content: "テストのコメント",micropost_id: @micropost.id)
+    assert_difference 'Comment.count', -1 do
+      @user.destroy
+    end
+  end
+  
+  test "associated likes" do
+    @user.save
+    @micropost = @user.microposts.create!(content: "テストの投稿")
+    @like = @user.likes.create!(micropost_id: @micropost.id)
+    assert @like.valid?
+  end
+  
+  test "associated notifications should be destroyed" do
+    @user.save
+    @user2.save
+    @user.active_notifications.create!(visited_id: @user2.id,
+                                       action: "follow",
+                                       checked: false
+                                       )
+    assert_difference 'Notification.count', -1 do
+      @user.destroy
+    end
+  end
+  
   test "feed should have the right posts" do
     michael = users(:michael)
     archer  = users(:archer)
     lana    = users(:lana)
-    # フォローしているユーザーの投稿を確認
     lana.microposts.each do |post_following|
       assert michael.feed.include?(post_following)
     end
-    # 自分自身の投稿を確認
     michael.microposts.each do |post_self|
       assert michael.feed.include?(post_self)
     end
-    # フォローしていないユーザーの投稿を確認
     archer.microposts.each do |post_unfollowed|
       assert_not michael.feed.include?(post_unfollowed)
     end
   end
-  
 end

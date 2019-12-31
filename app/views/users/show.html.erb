@@ -2,8 +2,7 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <h1>
-        <% if @user == current_user %> 
+      <% if @user == current_user %> 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -22,7 +21,8 @@
             </div>
           </div>
         </div>
-        <% end %>
+      <% end %>
+      <h1>
         <img class="user_image link-font" data-toggle="modal" data-target="#myModal"
           src="<%= "/user_images/#{@user.image_name}" %>">
         <%= @user.user_name %>
@@ -50,8 +50,8 @@
 </div>
 <div class="row">
   <div class="microposts-box">
+    <h3>投稿 (<%= @user.microposts.count %>)</h3>
     <% if @user.microposts.any? %>
-      <h3>投稿 (<%= @user.microposts.count %>)</h3>
       <div class="pictures-wrapper">
         <%= render 'shared/micropost_modal' %>
         <% @microposts.each do |micropost| %>  

@@ -8,7 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
   
   test "should get new" do
-    get new_user_registration_url
+    get new_user_registration_path
     assert_response :success
   end
   
@@ -21,5 +21,4 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get followers_user_path(@user)
     assert_redirected_to new_user_session_url
   end
-
 end

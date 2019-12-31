@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/terms', to:'static_pages#terms'
   devise_for :users,
     controllers: { omniauth_callbacks: 'users/omniauth_callbacks'}
-  resources :users do
+  resources :users, only: [:index, :show] do
     member do
       get :following, :followers, :likes
     end
@@ -18,5 +18,4 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
   resources :notifications, only: :index
-  
 end
